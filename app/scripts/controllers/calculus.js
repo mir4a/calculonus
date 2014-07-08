@@ -1,36 +1,54 @@
 'use strict';
 
-angular.module('calculonusApp')
-  .controller('CalculusCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+angular.module('calculonusApp').controller('CalculusCtrl', function ($scope) {
+  $scope.awesomeThings = [
+    'HTML5 Boilerplate', 'AngularJS', 'Karma'
+  ];
 
-    $scope.formattedText = '';
+  $scope.formattedText = '';
 
-    function Calculus() {
-      this.text = '';
-      this.rows = [];
-      this.splitBySpace = function(text) {
-        var t = text || this.text;
-        var ar = [];
-        ar = t.split(' ');
-        return ar;
-      };
+  function Calculus() {
+    this.text = '';
+    this.rows = [];
+    this.splitBy = function (text, delimiter) {
+      delimiter = delimiter || ' ';
+      var t = text || this.text;
+      var ar = [];
+      ar = t.split(delimiter);
+      return ar;
+    };
+  }
+
+  Calculus.prototype.prepareArguments = function () {
+    var delimeters = {
+      'space'   : ' ',
+      'plus'    : '+',
+      'minus'   : '-',
+      'divide'  : '/',
+      'multiply': '*',
+      'percent' : '%'
+    };
+    var args = {};
+    var _text = this.text;
+
+    for (var key in delimeters) {
+      if (delimeters.hasOwnProperty(key)) {
+        args[key] = _text.split(delimeters[key]);
+      }
     }
 
-    var calc1 = new Calculus();
+    return args;
+  };
 
-    $scope.getText = function($event) {
-      // var target = $event.currentTarget;
-      var text = $event.currentTarget.innerText;
-      calc1.text = text;
-      console.log(calc1);
-      calc1.findCaret();
-      $scope.formattedText = calc1.oneSymbolHighlight();
-    };
+  $scope.calculus = new Calculus();
 
+  $scope.getText = function ($event) {
+    // var target = $event.currentTarget;
+    var text = $event.currentTarget.innerText;
+    this.calculus.text = text;
+    var ar = this.calculus.prepareArguments();
+    console.log(this);
+    console.info(ar);
+  };
 
-  });
+});

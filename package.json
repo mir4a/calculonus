@@ -28,7 +28,9 @@
     "time-grunt": "~0.2.1",
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "karma-ng-scenario": "~0.1.0",
-    "grunt-karma": "~0.8.3"
+    "grunt-karma": "~0.8.3",
+    "karma-jasmine": "~0.1.5",
+    "karma-safari-launcher": "~0.1.1"
   },
   "engines": {
     "node": ">=0.10.0"
