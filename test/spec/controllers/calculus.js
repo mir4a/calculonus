@@ -5,8 +5,7 @@ describe('Controller: CalculusCtrl', function () {
   // load the controller's module
   beforeEach(module('calculonusApp'));
 
-  var CalculusCtrl,
-    scope;
+  var CalculusCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
@@ -20,7 +19,8 @@ describe('Controller: CalculusCtrl', function () {
     expect(scope.awesomeThings.length).toBe(3);
   });
 
-  it('should has class Calculus', function(){
+  it('should has class Calculus', function () {
     expect(typeof scope.calculus).toBe('object');
   });
+
 });
